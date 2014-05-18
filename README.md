@@ -3,4 +3,5 @@ JS1K-Demo
 
 JS1K Demo
 
-所有demo均来自js1k.com，用于学习借鉴之用。版权属于原作者。
+所有demo均源自js1k.com，经收集整理，用于学习和借鉴。
+向大神们致敬！
