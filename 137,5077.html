@@ -1,0 +1,98 @@
+
+
+<html>
+	<head>
+		<title>JS1K Demo</title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<canvas id="c" width="1024" height="768">
+		<script>
+			
+      var a = document.getElementsByTagName('canvas')[0];
+      var b = document.body;
+      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
+      // unprefix some popular vendor prefixed things (but stick to their original name)
+      var AudioContext =
+        window.AudioContext ||
+          window.webkitAudioContext;
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function(f){ setTimeout(f, 1000/30); };
+      // fix bug in safari: http://qfox.nl/weblog/218
+      document.body.clientWidth;
+      // auto resize (original) canvas. call `onresize(w,h) to limit the size of the canvas
+      (window.onorientationchange = window.onresize = function(a){
+        var mw = Infinity;
+        var mh = Infinity;
+        var min = Math.min;
+
+        return function(w,h){
+          if (arguments.length === 2) {
+            mw = w;
+            mh = h;
+          }
+          a.style.width = (a.width = min(mw, innerWidth)) + 'px';
+          a.style.height = (a.height = min(mh, innerHeight)) + 'px';
+        };
+      }(a))();
+
+      var c = a.getContext('2d');
+    
+		</script>
+		
+		
+<!--------------------------------------------->
+		
+		
+		<script>
+		
+p=new Array();x=0;y=0;r=1;co=0;w=0;h=0;ra=5;
+function Pa(ox,oy,c,s){this.x=0;this.y=0;this.ox=ox;this.oy=oy;this.c=c;this.s=s;this.sx=0;this.sy=0;}  
+
+window.onload=function() 
+{
+w=a.width;h=a.height;
+x=w/2;y=h/2;
+a.addEventListener('mousemove', function(evt){
+var r=a.getBoundingClientRect();x=evt.clientX-r.left;y=evt.clientY-r.top;dx=w/2-x;dy=h/2-y;co=Math.sqrt(dx*dx+dy*dy)/((w+h)/14);
+if(y<h*.3&&ra>1)ra--;
+if(y>h*.7&&ra<10)ra++;
+},false);
+ml(0);
+an();
+};
+
+function an()
+{
+c.clearRect(0,0,w,h);ml(1);window.setTimeout(an,16);
+}
+
+function ml(f)
+{
+for(var i=384;i>=0;i--)
+{
+if(f)
+{
+l=p[i];
+l.x+=(x-l.x)/l.s;l.y+=(y-l.y)/l.s;l.sx=Math.random();l.sy=Math.random();
+c.beginPath();c.arc(l.x+l.ox+l.sx,l.y+l.oy+l.sy,ra,0,6.28318-co);c.fillStyle=l.c;c.fill();c.strokeStyle=l.c;c.stroke();
+}
+else
+{
+ang=(2.399*i);
+if(!(i%5))r+=2;
+s=r+6;
+pr=new Pa(Math.cos(ang)*r,Math.sin(ang)*r,'rgba('+s*2+','+s+','+s*12+','+(.5)+')',s);p.push(pr);
+}
+}
+}
+		</script>
+		
+	</body>
+</html>
+	
