@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<title>JS1K Demo</title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<canvas id="c" width="1024" height="768">
+		<script>
+     
+      var a = document.getElementsByTagName('canvas')[0];
+      var b = document.body;
+      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
+      // unprefix some popular vendor prefixed things (but stick to their original name)
+      var AudioContext =
+        window.AudioContext ||
+          window.webkitAudioContext;
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function(f){ setTimeout(f, 1000/30); };
+      // fix bug in safari: http://qfox.nl/weblog/218
+      document.body.clientWidth;
+      // auto resize (original) canvas. call `onresize(w,h) to limit the size of the canvas
+      (window.onorientationchange = window.onresize = function(a){
+        var mw = Infinity;
+        var mh = Infinity;
+        var min = Math.min;
+
+        return function(w,h){
+          if (arguments.length === 2) {
+            mw = w;
+            mh = h;
+          }
+          a.style.width = (a.width = min(mw, innerWidth)) + 'px';
+          a.style.height = (a.height = min(mh, innerHeight)) + 'px';
+        };
+      }(a))();
+
+      var c = a.getContext('2d');
+    
+		</script>
+		
+		<script>
+document.onclick = T;
+M = Math;
+C = 2000;
+S = 16;
+O = 0.5;
+F = 0.9;
+u = [];
+
+function T() {
+    r = M.random;
+    f = M.floor;
+    for (i = 0; i < C; ++i) u[i] = {
+        x: r() * a.width,
+        y: r() * a.height
+    };
+    for (i in u) {
+        v = u[i];
+        while (!v.h) v.h = u[f(r() * C)];
+        v.h.v = v;
+        while (!v.v) v.v = u[f(r() * C)];
+        v.v.h = v
+    }
+}
+
+function p() {
+    c.fillStyle = "rgba(0,0,0," + F + ")";
+    c.beginPath();
+    c.fillRect(0, 0, a.width, a.height);
+    c.fillStyle = "rgba(255,255,255," + O + ")";
+    u.map(function(q) {
+        c.fillRect(q.x, q.y, 1, 1)
+    });
+    c.fill();
+    u.map(function(q) {
+        h = m(q.h, q.v);
+        n = m(q, q.v);
+        s = b(h, n) / b(h, h);
+        r = 1 + 2 / e(h);
+        t = m(g(q.v, l(m(q.h, q.v), s < r ? r : s)), q);
+        if (e(t) > S) {
+            d = g(q, A(t, S));
+            q.a = d.x;
+            q.b = d.y
+        } else {
+            q.a = q.x;
+            q.b = q.y
+        }
+    });
+    u.map(function(q) {
+        if (q.a > 0 && q.a < a.width) q.x = q.a;
+        if (q.b > 0 && q.b < a.height) q.y = q.b
+    });
+    setTimeout(p, 1)
+}
+T();
+p();
+
+function b(v, w) {
+    return v.x * w.x + v.y * w.y
+}
+
+function e(v) {
+    return M.sqrt(b(v, v))
+}
+
+function g(v, w) {
+    return {
+        x: v.x + w.x,
+        y: v.y + w.y
+    }
+}
+
+function l(v, s) {
+    return {
+        x: v.x * s,
+        y: v.y * s
+    }
+}
+
+function m(v, w) {
+    return g(v, l(w, -1))
+}
+
+function A(v, w) {
+    return l(l(v, 1 / e(v)), w)
+}
+		</script>
+		
+	</body>
+</html>
+	

@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title>JS1K Demo</title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<canvas id="c" width="1024" height="768">
+		<script>
+      var a = document.getElementsByTagName('canvas')[0];
+      var b = document.body;
+      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
+      // unprefix some popular vendor prefixed things (but stick to their original name)
+      var AudioContext =
+        window.AudioContext ||
+          window.webkitAudioContext;
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function(f){ setTimeout(f, 1000/30); };
+      // fix bug in safari: http://qfox.nl/weblog/218
+      document.body.clientWidth;
+      // auto resize (original) canvas. call `onresize(w,h) to limit the size of the canvas
+      (window.onorientationchange = window.onresize = function(a){
+        var mw = Infinity;
+        var mh = Infinity;
+        var min = Math.min;
+
+        return function(w,h){
+          if (arguments.length === 2) {
+            mw = w;
+            mh = h;
+          }
+          a.style.width = (a.width = min(mw, innerWidth)) + 'px';
+          a.style.height = (a.height = min(mh, innerHeight)) + 'px';
+        };
+      }(a))();
+
+      var c = a.getContext('2d');
+    
+		</script>
+		
+		<script>
+N = Math;
+F = !1;
+T = !0;
+O = N.floor;
+L = window;
+E = setTimeout;
+
+function I(d, e) {
+    t = this;
+    t.w = d;
+    t.h = e;
+    t.B = [];
+    t.p = function() {
+        n = 2 * t.w;
+        P = c.createImageData(n, 2 * t.h);
+        R = P.data;
+        for (i = 0; i < R.length / 4; i++) X = O(i % n / 2), Y = O(i / n / 2), G = 4 * i, t.B[X][Y] && (R[G + 0] = 0, R[G + 1] = 0, R[G + 2] = 0, R[G + 3] = 255);
+        P.data = R;
+        c.putImageData(P, 0, 0)
+    }
+}
+
+function m() {
+    H = [];
+    for (i = 0; i < t.w; i++)
+        for (H[i] = [], j = 0; j < t.h; j++) H[i][j] = F;
+    for (k = 0; k < t.w; k++)
+        for (l = 0; l < t.h; l++) {
+            Y = 0;
+            x = k;
+            y = l;
+            0 == x && (x = t.w);
+            0 == y && (y = t.h);
+            for (i = x - 1; i < x + 2; i++)
+                for (j = y - 1; j < y + 2; j++)
+                    if (i != x || j != y) C = i % t.w, h = j % t.h, t.B[C][h] && Y++;
+                    !t.B[k][l] || 2 != Y && 3 != Y ? 3 == Y && (H[k][l] = T) : H[k][l] = T
+        }
+    t.B = H;
+    _.p();
+    L.s = E(m, 20)
+}
+J = document.createElement("p");
+J.style.cssText = "position:absolute;top:0;background:gray";
+J.innerHTML = "Click anywhere to stop/continue";
+b.appendChild(J);
+u = O(a.width / 2);
+z = O(a.height / 2);
+L._ = new I(u, z);
+for (i = 0; i < t.w; i++)
+    for (t.B[i] = [], j = 0; j < t.h; j++) t.B[i][j] = F;
+for (i = 0; i < t.w; i++)
+    for (j = 0; j < t.h; j++) t.B[i][j] = 0 == O(10 * N.random());
+_.p();
+L.onclick = function() {
+    L.s ? (clearTimeout(L.s), L.s = F) : L.s = E(m, 20)
+};
+    
+		</script>
+		
+	</body>
+</html>
+	
