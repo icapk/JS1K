@@ -1,62 +1,0 @@
-
-
-<html>
-	<head>
-		<title>JS1K Demo</title>
-		<meta charset="utf-8">
-	</head>
-	
-	<body>
-		<canvas id="c" width="1024" height="768">
-		<script>
-			
-      var a = document.getElementsByTagName('canvas')[0];
-      var b = document.body;
-      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
-      // unprefix some popular vendor prefixed things (but stick to their original name)
-      var AudioContext =
-        window.AudioContext ||
-          window.webkitAudioContext;
-      var requestAnimationFrame =
-        window.requestAnimationFrame ||
-          window.mozRequestAnimationFrame ||
-          window.webkitRequestAnimationFrame ||
-          window.msRequestAnimationFrame ||
-          function(f){ setTimeout(f, 1000/30); };
-      // fix bug in safari: http://qfox.nl/weblog/218
-      document.body.clientWidth;
-      // auto resize (original) canvas. call `onresize(w,h) to limit the size of the canvas
-      (window.onorientationchange = window.onresize = function(a){
-        var mw = Infinity;
-        var mh = Infinity;
-        var min = Math.min;
-
-        return function(w,h){
-          if (arguments.length === 2) {
-            mw = w;
-            mh = h;
-          }
-          a.style.width = (a.width = min(mw, innerWidth)) + 'px';
-          a.style.height = (a.height = min(mh, innerHeight)) + 'px';
-        };
-      }(a))();
-
-      var c = a.getContext('2d');
-    
-		</script>
-		
-		
-		
-		
-		<script>
-		
-<!--------------------------------------------->
-
-      // start of submission //
-_=' Eb,c,d=3616f=3553,h~k~l,m,n;document.onmousemove=(eGb=:X/Q;c=1-:Y/Q}; p(e,rGl=eshadJSource(l,rcompilel&turn l}m= q$3,"Hu 3 bPosi=Wb,^u=(b.xy+^)/2.;q s$2,"p&cision highp floH;z 2 pz samplJ` s;FgColM=t`(s,u)*.98+Wclamp(^-length(u-p)*9.,0.,^))+W1slKkmusemB<,B()bDHa<	[3,3]N35044enableV#(0fM(vPoKr(26,8,01048576%h[a]=0;fM(E0;2%=F(N.EO(O!.apixelSto&iZ317,1xImage`!?,?6	h)1,||@fO`(d,36064,f,.a,0 jeGactiveOZ3984+nO!k[n].a@edw#s(4,3)}E1;( u(Gn=1-a;z1is"Nnz2fp"Nb,cviewpMj0jjnullEn;&questAnimaFR(u)})(c&aRbnifMmextu&xPaRri!1024tionShadJ(	,new FloH32#((getULoca(m,",Qk[a]N;yKg 2 u;Progm(void maK(Ggl_);bKduffJfunc0,}"Htachm,vecJxAtrag.tevar-1,!(f,#Ary$=pZ563%>a;a++)&re:e.page<Z4962?6408@F(d,Ea=G){HatJerKinMorN),OTQ512RmeW4(Z(3^1.`2Djt(zu|9729~=[],trib';for(Y in $='~|zj`^ZWRQONMKJHGE@?<:&%$#!	')with(_.split($[Y]))_=join(pop());console.log(_)
-      // end of submission //
-		</script>
-		
-	</body>
-</html>
-	
