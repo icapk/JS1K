@@ -58,9 +58,6 @@ function g(e,t){
 	c.lineTo(e.x-e.l*C(e.a),e.y-e.l*S(e.a));
 	return e
 }
-b.onclick=function(){
-	v=v?clearInterval(v):setInterval(f,16)
-};
 c.strokeStyle="#0ff";
 c.textBaseline="top";
 c.lineWidth=.5;
@@ -72,7 +69,8 @@ H=a.height;
 r=.7;
 t=15;
 P=M.PI/2;
-v=setInterval(f=function(){
+(function f(){
+    requestAnimationFrame(f);
 	c.fillStyle="#000";
 	c.fillRect(0,0,W,H);
 	c.beginPath();
@@ -92,10 +90,7 @@ v=setInterval(f=function(){
 		bs=nbs
 	}
 	c.stroke();
-	c.fillStyle="#fff";
-	c.fillText("click to pause",9,9)
-}
-,16)
+})();
 		</script>
 		
 	</body>
