@@ -70,7 +70,6 @@ r=.7;
 t=15;
 P=M.PI/2;
 (function f(){
-    requestAnimationFrame(f);
 	c.fillStyle="#000";
 	c.fillRect(0,0,W,H);
 	c.beginPath();
@@ -90,6 +89,7 @@ P=M.PI/2;
 		bs=nbs
 	}
 	c.stroke();
+    requestAnimationFrame(f);
 })();
 		</script>
 		
